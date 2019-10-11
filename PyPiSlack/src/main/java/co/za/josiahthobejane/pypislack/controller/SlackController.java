@@ -22,11 +22,11 @@ public class SlackController {
             @RequestParam("user_name") String userName) {
 
         if (movementData.isEmpty()) {
-            return userName + " yikes... type propely";
+            return userName + " Your command is wrong, please try again.";
         } else if (!movementData.isEmpty()) {
             String[] words = movementData.split(" ");
-
             moveRover(words[0], Integer.parseInt(words[1]));
+            return userName + " moving the Rovr " + words[0];
         }
         return "";
 
@@ -84,7 +84,7 @@ public class SlackController {
      */
     public void stopMovementAfter(int actualDistance) {
         try {
-            wait(actualDistance);
+            Thread.sleep(actualDistance);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
