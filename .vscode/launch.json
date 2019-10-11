@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - PyPiSlackApplication",
+            "request": "launch",
+            "mainClass": "co.za.josiahthobejane.pypislack.PyPiSlackApplication",
+            "projectName": "PyPiSlack"
+        }
+    ]
+}
