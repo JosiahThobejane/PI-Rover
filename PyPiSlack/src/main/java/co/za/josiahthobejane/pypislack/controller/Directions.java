@@ -12,10 +12,10 @@ public class Directions
     //create gpio controller
     final static GpioController gpioController = GpioFactory.getInstance();
 
-    final static GpioPinDigitalOutput motorAForwardPin = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_01);
-    final static GpioPinDigitalOutput motorABackwardPin = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_01);
-    final static GpioPinDigitalOutput motorBForwardPin = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_01);
-    final static GpioPinDigitalOutput motorBBackwardPin = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_01);
+    final static GpioPinDigitalOutput motorAForwardPin = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_27);
+    final static GpioPinDigitalOutput motorABackwardPin = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_26);
+    final static GpioPinDigitalOutput motorBForwardPin = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_23);
+    final static GpioPinDigitalOutput motorBBackwardPin = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_24);
     
     public static void moveLeft() {
         
