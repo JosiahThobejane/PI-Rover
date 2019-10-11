@@ -18,11 +18,19 @@ public class Directions
     final static GpioPinDigitalOutput motorBBackwardPin = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_24);
     
     public static void moveLeft() {
-        
+        motorABackwardPin.setState(PinState.HIGH);
+        motorBBackwardPin.setState(PinState.LOW);
+        //
+        motorAForwardPin.setState(PinState.HIGH);
+        motorBForwardPin.setState(PinState.LOW);
     }
 
     public static void moveRight() {
-
+        motorABackwardPin.setState(PinState.LOW);
+        motorBBackwardPin.setState(PinState.HIGH);
+        //
+        motorAForwardPin.setState(PinState.LOW);
+        motorBForwardPin.setState(PinState.HIGH);
     }
 
     public static void moveForward() {

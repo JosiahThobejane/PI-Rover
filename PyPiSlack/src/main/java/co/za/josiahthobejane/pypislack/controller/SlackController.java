@@ -18,17 +18,17 @@ public class SlackController {
      * @return
      */
     @RequestMapping(value = "/rover", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String onReceiveRoverCommand(@RequestParam("text") String movementData,
+    public String onReceiveRoverCommand(@RequestParam("text") String slackResponse,
             @RequestParam("user_name") String userName) {
 
-        if (movementData.isEmpty()) {
-            return userName + " Your command is wrong, please try again.";
-        } else if (!movementData.isEmpty()) {
-            String[] words = movementData.split(" ");
-            moveRover(words[0], Integer.parseInt(words[1]));
-            return userName + " moving the Rovr " + words[0];
+        if (slackResponse.isEmpty()) {
+            return userName + " Your command is missing something, please try again. :neutral_face:";
+        } else if (!slackResponse.isEmpty()) {
+            String[] movementData = slackResponse.split(" ");
+            moveRover(movementData[0], Integer.parseInt(movementData[1]));
+            return userName + " moving the Rovr " + movementData[0] + " :racing_car:";
         }
-        return "";
+        return "something must have went wrong :thinking_face: ";
 
     }
 
@@ -65,14 +65,13 @@ public class SlackController {
     }
 
     /**
-     * 
+     * Calculates the time the motors should run for
      * @param distance
      * @return
      */
 
     public int calculateDistance(int distance) {
-        double calculatedDistance = (distance / 28.571) * 1000; // 28... is the estimated speed of the motors on full
-                                                                // throttle
+        double calculatedDistance = (distance / 28.571) * 1000; // 28... is the estimated speed of the motors on full throttle
         Integer timeLapse = Integer.valueOf((int) Math.round(calculatedDistance)); // Time = Distance / Velocity
         return timeLapse;
     }
@@ -84,7 +83,7 @@ public class SlackController {
      */
     public void stopMovementAfter(int actualDistance) {
         try {
-            Thread.sleep(actualDistance);
+            Thread.sleep(calculateDistance(actualDistance));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
